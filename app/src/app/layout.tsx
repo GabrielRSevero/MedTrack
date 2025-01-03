@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
+import profilePic from "../assets/img/profileuser.jpg"
+import { RxDashboard } from "react-icons/rx";
+import { GoPeople } from "react-icons/go";
+import { LuMessageSquareText } from "react-icons/lu";
+import { LuBedSingle } from "react-icons/lu";
+import { MdOutlineBedroomChild } from "react-icons/md";
+import { PiUserGearBold } from "react-icons/pi";
+import { GoBell } from "react-icons/go";
+import { IoPaperPlaneOutline } from "react-icons/io5";
+import { FiMapPin } from "react-icons/fi";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +39,54 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <main className="h-full">
+          <aside className="bg-sky-500 text-slate-100 flex h-16">
+            <ul className="flex w-full">
+              <li className="flex items-center justify-center flex-1 gap-2 cursor-pointer">
+                <Link className="flex items-center justify-center flex-1 gap-2 cursor-pointer h-full" href="/">
+                  <RxDashboard className="w-6 h-6" />
+                  Dashboard
+                </Link>
+              </li>
+              <li className="flex items-center justify-center flex-1 gap-2 cursor-pointer">
+                <Link className="flex items-center justify-center flex-1 gap-2 cursor-pointer h-full" href="/patients">
+                  <GoPeople  className="w-6 h-6" />
+                  Patients
+                </Link>
+              </li>
+              <li className="flex items-center justify-center flex-1 gap-2 cursor-pointer">
+                <LuMessageSquareText className="w-6 h-6" />
+                Messages
+              </li>
+              <li className="flex items-center justify-center flex-1 gap-2 cursor-pointer">
+                <LuBedSingle className="w-6 h-6" />
+                Beds
+              </li>
+              <li className="flex items-center justify-center flex-1 gap-2 cursor-pointer">
+                <MdOutlineBedroomChild className="w-6 h-6" />
+                Rooms
+              </li>
+              <li className="flex items-center justify-center flex-1 gap-2">
+                <PiUserGearBold className="w-6 h-6" />
+                Users
+              </li>
+            </ul>
+            <div className="flex items-center justify-center px-4 border-l border-sky-400">
+              <Image className="h-10 w-10 border rounded-full" src={profilePic} alt={""} />
+            </div>
+          </aside>
+
+          <div className="w-full">
+            <div className="flex items-center justify-end p-4 gap-6">
+              <GoBell className="w-5 h-5" />
+              <IoPaperPlaneOutline className="w-5 h-5" />
+              <FiMapPin className="w-5 h-5" />
+            </div>
+            <div className="px-4">
+              {children}
+            </div>
+          </div>
+        </main>
       </body>
     </html>
   );
